@@ -28,10 +28,9 @@ body{
 
 .wrap-img{
   margin-bottom: 0vh;
-  opacity: 0.5;
+  opacity: 1;
   animation: fromTop 1.5s linear;
   height: -100px;
-
  
 }
 
