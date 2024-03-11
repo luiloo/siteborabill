@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="carrinho.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="carrinho.js"></script>
+  <title>Pedido</title>
+</head>
+
+<body>
+  <div id="error" class="error-modal">
+    <p>Primeiro, digite um nome</p>
+    <button class="error-btn" onclick="fechar()">Ok</button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button onclick="window.location.href='../menu/menu.html'" type="button" class="btn btn-dark">Menu</button>
+    <button onclick="window.location.href='../itens/itens.html'" type="button" class="btn btn-dark">Itens</button>
+  </div>
+  <h1>Pedido</h1>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Nome:</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome completo">
+  </div>
+  <button onclick="comecar()" type="button" class="btn-outline-dark">Começar</button>
+  <div id="selects-div">
+    <h2>Olá, <span id="nomePrint"></span> vamos esolher suas miniaturas</h2>
+    <br>
+    <h3>Coleção de antigos (miniaturas fabricadas antes de 2005)</h3>
+    <select class="form-select" aria-label="Default select example" id="select-antigos">
+      <option selected>Selecione suas miniaturas</option>
+      <option value="Carrinho1a">Cadillac '59 Custom</option>
+      <option value="Carrinho2a">Ford Mustang Fastback '65</option>
+      <option value="Carrinho3a">Chevrolet Corvette '63</option>
+      <option value="Carrinho4a">Ford Thunderbolt '64</option>
+      <option value="Carrinho5a">Nissan Datsun 240Z</option>
+    </select>
+    <h3>Coleção Porsche</h3>
+    <select class="form-select" aria-label="Default select example" id="select-porsches">
+      <option selected>Selecione suas miniaturas</option>
+      <option value="Carrinho1b">Porsche 911 GT3 '21</option>
+      <option value="Carrinho2b">Porsche 911 Carrera RS 2.7 '73</option>
+      <option value="Carrinho3b">Porsche 911 GT2 '93</option>
+      <option value="Carrinho4b">Porsche 911 '71 Magnus Walker</option>
+      <option value="Carrinho5b">Porsche 718 Cayman GT4 '07 Fast And Furious</option>
+    </select>
+    <h3>Coleção Caminhões</h3>
+    <select class="form-select" aria-label="Default select example" id="select-caminhões">
+      <option selected>Selecione suas miniaturas</option>
+      <option value="Carrinho1c">Mercedes-Benz Unimog 1300L 2011</option>
+      <option value="Carrinho2c">Armored Truck (caminhão forte)</option>
+      <option value="Carrinho3c">Quick Bite (caminhão de sorvete)</option>
+      <option value="Carrinho4c">Tractor</option>
+      <option value="Carrinho5c">Mercedes-Benz Unimog '88 U1300 Paramedic</option>
+    </select>
+    <h3>Coleção Exóticos</h3>
+    <select class="form-select" aria-label="Default select example" id="select-exóticos">
+      <option selected>Selecione suas miniaturas</option>
+      <option value="Carrinho1d">Lamborghini Miura SV '71</option>
+      <option value="Carrinho2d">McLaren Elva '19</option>
+      <option value="Carrinho3d">Bugatti EB110 SS '94</option>
+      <option value="Carrinho4d">Aston Martin V12 Speedster '21</option>
+      <option value="Carrinho5d">Porsche 914 '75 Dakar</option>
+    </select>
+    <h3>Coleção JDM</h3>
+    <select class="form-select" aria-label="Default select example" id="select-jdm">
+      <option selected>Selecione suas miniaturas</option>
+      <option value="Carrinho1e">Nissan Skyline GTR R33 '95</option>
+      <option value="Carrinho2e">Mazda 787B '91</option>
+      <option value="Carrinho3e">Nissan R390 GT1 '97</option>
+      <option value="Carrinho4e">Mazda RX-7 '95</option>
+      <option value="Carrinho5e">Toyota Celica '70</option>
+    </select>
+  </div>
+  <div>
+    <button type="button" onclick="calcularTotal()" class="btn btn-success">Fazer pedido</button>
+    <button type="button" onclick="limpar()" class="btn btn-outline-secondary">Limpar</button>
+  </div>
+  <div>
+    <span class="badge bg-dark">Total:</span>
+    <span class="badge bg-danger" id="resultado"></span>
+  </div>
+  <div id="pedido-pronto" class="pronto">
+    <h4>Miniatura Antiga</h4>
+    <p id="carrinhoa-pronto"></p>
+    <br>
+    <h4>Miniatura Porsche</h4>
+    <p id="carrinhob-pronto"></p>
+    <br>
+    <h4>Miniatura Caminhão</h4>
+    <p id="carrinhoc-pronto"></p>
+    <br>
+    <h4>Miniatura Exótico</h4>
+    <p id="carrinhod-pronto"></p>
+    <br>
+    <h4>Miniatura JDM</h4>
+    <p id="carrinhoe-pronto"></p>
+    <br>
+  </div>
+</body>
+
+</html>
